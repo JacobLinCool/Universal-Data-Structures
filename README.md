@@ -74,21 +74,20 @@ See [vector.ex.c](./vector.ex.c).
 
 ### `map.h`
 
-_**Not Implemented Yet**_
+_**Not Implemented Yet. [Any Contribution is Welcome!](./CONTRIBUTING.md)**_
 
 ### `set.h`
 
-_**Not Implemented Yet**_
+_**Not Implemented Yet. [Any Contribution is Welcome!](./CONTRIBUTING.md)**_
 
 ### `queue.h`
 
-_**Not Implemented Yet**_
+_**Not Implemented Yet. [Any Contribution is Welcome!](./CONTRIBUTING.md)**_
 
 You can make `vector` to behave like a `queue` by using `unshift` and `shift`.
 
 ### `stack.h`
 
-_**Not Implemented Yet**_
+_**Not Implemented Yet. [Any Contribution is Welcome!](./CONTRIBUTING.md)**_
 
 You can make `vector` to behave like a `stack` by using `push` and `pop`.
-
