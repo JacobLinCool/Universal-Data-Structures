@@ -20,18 +20,18 @@
         _type* data;                                                                                \
         size_t size;                                                                                \
         size_t capacity;                                                                            \
-        void (*insert)(struct _name*, size_t, _type);                                               \
-        _type (*remove)(struct _name*, size_t);                                                     \
-        void (*set)(struct _name*, size_t, _type);                                                  \
-        _type (*get)(struct _name*, size_t);                                                        \
-        void (*push)(struct _name*, _type);                                                         \
-        _type (*pop)(struct _name*);                                                                \
-        _type (*back)(struct _name*);                                                               \
-        void (*unshift)(struct _name*, _type);                                                      \
-        _type (*shift)(struct _name*);                                                              \
-        _type (*front)(struct _name*);                                                              \
-        void (*clear)(struct _name*);                                                               \
-        void (*free)(struct _name*);                                                                \
+        void (*insert)(struct _name* this, size_t idx, _type elm);                                  \
+        _type (*remove)(struct _name* this, size_t idx);                                            \
+        void (*set)(struct _name* this, size_t idx, _type elm);                                     \
+        _type (*get)(struct _name* this, size_t idx);                                               \
+        void (*push)(struct _name* this, _type elm);                                                \
+        _type (*pop)(struct _name* this);                                                           \
+        _type (*back)(struct _name* this);                                                          \
+        void (*unshift)(struct _name* this, _type elm);                                             \
+        _type (*shift)(struct _name* this);                                                         \
+        _type (*front)(struct _name* this);                                                         \
+        void (*clear)(struct _name* this);                                                          \
+        void (*free)(struct _name* this);                                                           \
     } _name;                                                                                        \
     void insert_##_name(_name* vector, size_t _idx, _type val) {                                    \
         if (vector->size == vector->capacity) {                                                     \
