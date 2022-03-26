@@ -8,7 +8,8 @@ Lightweight implementation of generic and powerful data structures in C.
 [map](#maph) ·
 [set](#seth) ·
 [queue](#queueh) ·
-[stack](#stackh)
+[stack](#stackh) ·
+[deque](#dequeh)
 
 [xor list](#xor-listh)
 
@@ -63,7 +64,7 @@ MyVector* vec = create_MyVector();
 
 #### utilities
 
-You can use `VectorInspect` to inspect the vector.
+You can use `VectorInspect` to inspect a vector.
 
 ```c
 /** Inspect the vector "vec" with print format "%d" */
@@ -86,13 +87,62 @@ _**Not Implemented Yet. [Any Contribution is Welcome!](./CONTRIBUTING.md)**_
 
 _**Not Implemented Yet. [Any Contribution is Welcome!](./CONTRIBUTING.md)**_
 
-You can make `vector` to behave like a `queue` by using `unshift` and `shift`.
+You can make `deque` to behave like a `queue` by using `unshift` and `shift`.
 
 ### `stack.h`
 
 _**Not Implemented Yet. [Any Contribution is Welcome!](./CONTRIBUTING.md)**_
 
-You can make `vector` to behave like a `stack` by using `push` and `pop`.
+You can make `deque` to behave like a `stack` by using `push` and `pop`.
+
+### [`deque.h`](./src/deque.h)
+
+Double-ended queue of any type, implemented with _`XOR List`_.
+
+```c
+/** Construct a new deque struct */
+StructXORListNode(_name, _type, _fallback);
+/** Example: */
+StructDeque(MyDeque, int, INT32_MIN);
+```
+
+#### constructor
+
+Create an instance of a defined deque struct.
+
+```c
+MyDeque* deque = create_MyDeque();
+```
+
+#### properties
+
+- `deque->head`: the head node of underlying xor-list
+- `deque->tail`: the tail node of underlying xor-list
+- `deque->size`: the number of elements in the deque `deque`
+
+#### methods
+
+- `void deque->push(deque, elm)`: add an element to the end of the deque `deque`
+- `void deque->unshift(deque, elm)`: add an element to the beginning of the deque `deque`
+- `_type deque->pop(deque)`: remove and return the last element of the deque `deque`
+- `_type deque->shift(deque)`: remove and return the first element of the deque `deque`
+- `_type deque->back(deque)`: get the last element of the deque `deque`
+- `_type deque->front(deque)`: get the first element of the deque `deque`
+- `void deque->clear(deque)`: remove all elements from the deque `deque`
+- `void deque->free(deque)`: free the deque `deque`
+
+#### utilities
+
+You can use `DequeInspect` to inspect a deque.
+
+```c
+/** Inspect the deque "deque" with print format "%d" */
+DequeInspect(deque, "%d");
+```
+
+#### example
+
+See [deque.ex.c](./ex/deque.ex.c).
 
 ### [`xor-list.h`](./src/xor-list.h)
 
