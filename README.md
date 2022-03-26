@@ -10,6 +10,8 @@ Lightweight implementation of generic and powerful data structures in C.
 [queue](#queueh) ·
 [stack](#stackh)
 
+[xor list](#xor-listh)
+
 </div>
 
 ## Usage
@@ -91,3 +93,48 @@ You can make `vector` to behave like a `queue` by using `unshift` and `shift`.
 _**Not Implemented Yet. [Any Contribution is Welcome!](./CONTRIBUTING.md)**_
 
 You can make `vector` to behave like a `stack` by using `push` and `pop`.
+
+### [`xor-list.h`](./src/xor-list.h)
+
+Memory efficient doubly linked list for any type.
+
+```c
+/** Construct a new XOR list node struct */
+StructXORListNode(_name, _type);
+/** Example: */
+StructXORListNode(MyNode, int);
+```
+
+#### constructor
+
+Create a node of a defined XOR list node struct.
+
+```c
+MyNode* node = create_Node(123);
+```
+
+#### properties
+
+- `node->val`: the value of the node `node`
+- `node->beacon`: the pointer "beacon" of the node `node`
+
+> pointer beacon: the xor result of the previous and next node address
+
+#### methods
+
+- `_name* node->xor(node_a, node_b)`: get the xor of the node `node_a` and `node_b`
+- `_name* node->left(node, right)`: get the left node of the node `node`
+- `_name* node->right(node, left)`: get the right node of the node `node`
+- `void node->insert(node, left, right)`: insert the node `node` between `left` and `right`
+- `void node->remove(node, adjacent)`: remove the node `node` by giving one of its adjacent nodes `adjacent`
+- `_name* node->find(node, next, val)`: find the node with value `val`, start from `node` and `next` is the direction
+- `size_t node->traverse(node, next, func)`: traverse the list from `node` and `next` is the direction. `func` is the callback function for each node
+- `void node->free(node)`: free the node `node`
+
+#### utilities
+
+There are no utilities for `xor-list`.
+
+#### example
+
+See [xor-list.ex.c](./ex/xor-list.ex.c).
