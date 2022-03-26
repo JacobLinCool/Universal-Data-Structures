@@ -1,0 +1,17 @@
+name: PR Check
+
+on:
+    pull_request:
+        paths-ignore:
+            - "**/*.md"
+
+jobs:
+    pr_check:
+        name: PR Check
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+
+            - name: Run test
+              run: make test
