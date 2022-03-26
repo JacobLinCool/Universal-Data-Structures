@@ -1,5 +1,6 @@
 #include "../src/deque.h"
 #include <stdlib.h>
+#include <stdint.h>
 #include <assert.h>
 
 StructDeque(IntDeq, int, INT32_MIN);
