@@ -127,7 +127,6 @@ MyNode* node = create_Node(123);
 - `_name* node->right(node, left)`: get the right node of the node `node`
 - `void node->insert(node, left, right)`: insert the node `node` between `left` and `right`
 - `void node->remove(node, adjacent)`: remove the node `node` by giving one of its adjacent nodes `adjacent`
-- `_name* node->find(node, next, val)`: find the node with value `val`, start from `node` and `next` is the direction
 - `size_t node->traverse(node, next, func)`: traverse the list from `node` and `next` is the direction. `func` is the callback function for each node
 - `void node->free(node)`: free the node `node`
 

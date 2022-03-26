@@ -17,7 +17,6 @@
         struct _name* (*right)(struct _name* this, struct _name* left);                             \
         void (*insert)(struct _name* this, struct _name* left, struct _name* right);                \
         void (*remove)(struct _name* this, struct _name* adjacent);                                 \
-        struct _name* (*find)(struct _name* this, struct _name* next, _type val);                   \
         size_t (*traverse)(struct _name* this, struct _name* next, void (*func)(struct _name*));    \
         void (*free)(struct _name* this);                                                           \
     } _name;                                                                                        \
@@ -42,20 +41,6 @@
             another->beacon = xor_##_name(adjacent, xor_##_name(another->beacon, this));            \
         }                                                                                           \
         this->beacon = NULL;                                                                        \
-    }                                                                                               \
-    _name* find_##_name(_name* this, _name* next, _type val) {                                      \
-        _name* current = this;                                                                      \
-        while (current) {                                                                           \
-            if (current->val == val) {                                                              \
-                return current;                                                                     \
-            }                                                                                       \
-            _name* prev = current;                                                                  \
-            current = next;                                                                         \
-            if (current) {                                                                          \
-                next = xor_##_name(prev, current->beacon);                                          \
-            }                                                                                       \
-        }                                                                                           \
-        return NULL;                                                                                \
     }                                                                                               \
     size_t traverse_##_name(_name* this, _name* next, void (*func)(_name*)) {                       \
         size_t count = 0;                                                                           \
@@ -84,7 +69,6 @@
         this->insert = insert_##_name;                                                              \
         this->remove = remove_##_name;                                                              \
         this->traverse = traverse_##_name;                                                          \
-        this->find = find_##_name;                                                                  \
         this->free = free_##_name;                                                                  \
         return this;                                                                                \
     }                                                                                               \

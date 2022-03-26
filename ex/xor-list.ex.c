@@ -16,6 +16,12 @@ void print_node(Node* node) {
     }
 }
 
+typedef struct {
+    double x;
+    double y;
+} Point;
+StructXORListNode(PointNode, Point);
+
 int main() {
     // create nodes
     Node* n1 = create_Node(1);
@@ -46,14 +52,6 @@ int main() {
 
     printf("Traversing forward:\n");
     printf("Count = %zu\n\n", n1->traverse(n1, n2, &print_node));
-
-    printf("Find \"3\" from n1\n");
-    Node* n3_found = n1->find(n1, n2, 3);
-    print_node(n3_found);
-
-    printf("Find \"7\" from n1\n");
-    Node* n7_found = n1->find(n1, n2, 7);
-    print_node(n7_found);
 
     return 0;
 }
