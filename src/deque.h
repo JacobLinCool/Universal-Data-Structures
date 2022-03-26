@@ -112,8 +112,10 @@
             other->size = 0;                                                                        \
             return;                                                                                 \
         }                                                                                           \
-        this->tail->insert(this->tail, this->tail->beacon, other->head);                            \
-        other->head->insert(other->head, this->tail, other->head->beacon);                          \
+        _name##_Node* tail_beacon = this->tail->beacon;                                             \
+        _name##_Node* head_beacon = other->head->beacon;                                            \
+        this->tail->beacon = this->tail->xor(tail_beacon, other->head);                             \
+        other->head->beacon = other->head->xor(head_beacon, this->tail);                            \
         this->tail = other->tail;                                                                   \
         this->size += other->size;                                                                  \
         other->head = NULL;                                                                         \
