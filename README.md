@@ -101,7 +101,7 @@ Double-ended queue of any type, implemented with _`XOR List`_.
 
 ```c
 /** Construct a new deque struct */
-StructXORListNode(_name, _type, _fallback);
+StructDeque(_name, _type, _fallback);
 /** Example: */
 StructDeque(MyDeque, int, INT32_MIN);
 ```
@@ -146,7 +146,7 @@ See [deque.ex.c](./ex/deque.ex.c).
 
 ### [`xor-list.h`](./src/xor-list.h)
 
-Memory efficient doubly linked list for any type.
+Memory efficient doubly linked list of any type.
 
 ```c
 /** Construct a new XOR list node struct */
