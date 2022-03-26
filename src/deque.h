@@ -22,6 +22,8 @@
         _type (*pop)(struct _name* this);                                                           \
         _type (*front)(struct _name* this);                                                         \
         _type (*back)(struct _name* this);                                                          \
+        void (*reverse)(struct _name* this);                                                        \
+        void (*concat)(struct _name* this, struct _name* other);                                    \
         void (*clear)(struct _name* this);                                                          \
         void (*free)(struct _name* this);                                                           \
     } _name;                                                                                        \
@@ -89,6 +91,35 @@
         }                                                                                           \
         return this->tail->val;                                                                     \
     }                                                                                               \
+    void reverse_##_name(_name* this) {                                                             \
+        if (!this->head) {                                                                          \
+            return;                                                                                 \
+        }                                                                                           \
+        _name##_Node* node = this->head;                                                            \
+        this->head = this->tail;                                                                    \
+        this->tail = node;                                                                          \
+    }                                                                                               \
+    void concat_##_name(_name* this, _name* other) {                                                \
+        if (!other->head) {                                                                         \
+            return;                                                                                 \
+        }                                                                                           \
+        if (!this->head) {                                                                          \
+            this->head = other->head;                                                               \
+            this->tail = other->tail;                                                               \
+            this->size = other->size;                                                               \
+            other->head = NULL;                                                                     \
+            other->tail = NULL;                                                                     \
+            other->size = 0;                                                                        \
+            return;                                                                                 \
+        }                                                                                           \
+        this->tail->insert(this->tail, this->tail->beacon, other->head);                            \
+        other->head->insert(other->head, this->tail, other->head->beacon);                          \
+        this->tail = other->tail;                                                                   \
+        this->size += other->size;                                                                  \
+        other->head = NULL;                                                                         \
+        other->tail = NULL;                                                                         \
+        other->size = 0;                                                                            \
+    }                                                                                               \
     void clear_##_name(_name* this) {                                                               \
         while (this->head) {                                                                        \
             this->shift(this);                                                                      \
@@ -109,6 +140,8 @@
         this->pop = pop_##_name;                                                                    \
         this->front = front_##_name;                                                                \
         this->back = back_##_name;                                                                  \
+        this->reverse = reverse_##_name;                                                            \
+        this->concat = concat_##_name;                                                              \
         this->clear = clear_##_name;                                                                \
         this->free = free_##_name;                                                                  \
         return this;                                                                                \
