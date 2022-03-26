@@ -20,7 +20,7 @@ You can directly include them in your project (or paste them in your code).
 
 ## Features
 
-### [`vector.h`](./vector.h)
+### [`vector.h`](./src/vector.h)
 
 Auto-managed dynamic array of any type.
 
@@ -59,7 +59,7 @@ MyVector* vec = create_MyVector();
 - `void vec->clear(vec)`: remove all elements from the vector `vec`
 - `void vec->free(vec)`: free the vector `vec`
 
-#### inspector
+#### utilities
 
 You can use `VectorInspect` to inspect the vector.
 
@@ -70,7 +70,7 @@ VectorInspect(vec, "%d");
 
 #### example
 
-See [vector.ex.c](./vector.ex.c).
+See [vector.ex.c](./ex/vector.ex.c).
 
 ### `map.h`
 
