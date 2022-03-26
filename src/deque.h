@@ -16,16 +16,16 @@
         _name##_Node* head;                                                                         \
         _name##_Node* tail;                                                                         \
         size_t size;                                                                                \
-        void (*unshift)(struct _name* this, _type elm);                                          \
-        void (*push)(struct _name* this, _type elm);                                           \
-        _type (*shift)(struct _name* this);                                                     \
-        _type (*pop)(struct _name* this);                                                      \
+        void (*unshift)(struct _name* this, _type elm);                                             \
+        void (*push)(struct _name* this, _type elm);                                                \
+        _type (*shift)(struct _name* this);                                                         \
+        _type (*pop)(struct _name* this);                                                           \
         _type (*front)(struct _name* this);                                                         \
         _type (*back)(struct _name* this);                                                          \
         void (*clear)(struct _name* this);                                                          \
         void (*free)(struct _name* this);                                                           \
     } _name;                                                                                        \
-    void unshift_##_name(_name* this, _type elm) {                                               \
+    void unshift_##_name(_name* this, _type elm) {                                                  \
         _name##_Node* node = create_##_name##_Node(elm);                                            \
         if (this->head) {                                                                           \
             node->insert(node, NULL, this->head);                                                   \
@@ -36,7 +36,7 @@
         }                                                                                           \
         this->size++;                                                                               \
     }                                                                                               \
-    void push_##_name(_name* this, _type elm) {                                                \
+    void push_##_name(_name* this, _type elm) {                                                     \
         _name##_Node* node = create_##_name##_Node(elm);                                            \
         if (this->tail) {                                                                           \
             node->insert(node, this->tail, NULL);                                                   \
@@ -47,7 +47,7 @@
         }                                                                                           \
         this->size++;                                                                               \
     }                                                                                               \
-    _type shift_##_name(_name* this) {                                                          \
+    _type shift_##_name(_name* this) {                                                              \
         if (!this->head) {                                                                          \
             return _fallback;                                                                       \
         }                                                                                           \
@@ -62,7 +62,7 @@
         this->size--;                                                                               \
         return val;                                                                                 \
     }                                                                                               \
-    _type pop_##_name(_name* this) {                                                           \
+    _type pop_##_name(_name* this) {                                                                \
         if (!this->tail) {                                                                          \
             return _fallback;                                                                       \
         }                                                                                           \
@@ -91,7 +91,7 @@
     }                                                                                               \
     void clear_##_name(_name* this) {                                                               \
         while (this->head) {                                                                        \
-            this->shift(this);                                                                  \
+            this->shift(this);                                                                      \
         }                                                                                           \
     }                                                                                               \
     void free_##_name(_name* this) {                                                                \
@@ -103,16 +103,16 @@
         this->head = NULL;                                                                          \
         this->tail = NULL;                                                                          \
         this->size = 0;                                                                             \
-        this->unshift = unshift_##_name;                                                      \
-        this->push = push_##_name;                                                        \
-        this->shift = shift_##_name;                                                        \
-        this->pop = pop_##_name;                                                          \
+        this->unshift = unshift_##_name;                                                            \
+        this->push = push_##_name;                                                                  \
+        this->shift = shift_##_name;                                                                \
+        this->pop = pop_##_name;                                                                    \
         this->front = front_##_name;                                                                \
         this->back = back_##_name;                                                                  \
         this->clear = clear_##_name;                                                                \
         this->free = free_##_name;                                                                  \
         return this;                                                                                \
-    }                                                                                               \
+    }
 
 #define DequeInspect(_deque, _format) ({                                                            \
     printf("\n----------------------------------------\n");                                         \
