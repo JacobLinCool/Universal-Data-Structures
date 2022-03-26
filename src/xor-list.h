@@ -71,6 +71,6 @@
         this->traverse = traverse_##_name;                                                          \
         this->free = free_##_name;                                                                  \
         return this;                                                                                \
-    }                                                                                               \
+    }
 
 #endif /* __C_XOR_LIST_H */
