@@ -180,6 +180,8 @@
         vector->concat = &concat_##_name;                                                          \
         vector->slice = &slice_##_name;                                                            \
         vector->clone = &clone_##_name;                                                            \
+        vector->map = &map_##_name;                                                                \
+        vector->each = &each_##_name;                                                              \
         return vector;                                                                             \
     }
 
