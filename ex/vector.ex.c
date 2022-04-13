@@ -20,6 +20,8 @@ typedef struct {
 Point fallback_point = {0.0 / 0.0, 0.0 / 0.0};     // NaN point
 StructVector(PointVector, Point, fallback_point);  // A Point vector fallback with fallback_point
 
+int point_compare(const Point* a, const Point* b) { return b->x - a->x; }
+
 int main() {
     IntVector* int_vec = create_IntVector();
 
@@ -55,6 +57,7 @@ int main() {
     points->push(points, (Point){1.0, 2.0});
     points->push(points, (Point){3.0, 4.0});
     points->push(points, (Point){5.0, 6.0});
+    points->sort(points, point_compare);
 
     VectorInspect(points, "%f, %f");
 
