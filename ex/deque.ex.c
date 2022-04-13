@@ -1,4 +1,5 @@
 #include "../src/deque.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,7 +12,7 @@ typedef struct {
     double x;
     double y;
 } Point;
-StructDeque(Points, Point, ((Point){ 0.0 / 0.0, 0.0 / 0.0 })); // Point deque, fallback (nan, nan)
+StructDeque(Points, Point, ((Point){0.0 / 0.0, 0.0 / 0.0}));  // Point deque, fallback (nan, nan)
 
 int main() {
     MyDeque* deque = create_MyDeque();
@@ -68,14 +69,14 @@ int main() {
     Points* points = create_Points();
     DequeInspect(points, "%f, %f");
 
-    points->unshift(points, ((Point){ 1.0, 2.0 }));
-    points->unshift(points, ((Point){ 3.0, 4.0 }));
-    points->unshift(points, ((Point){ 5.0, 6.0 }));
+    points->unshift(points, ((Point){1.0, 2.0}));
+    points->unshift(points, ((Point){3.0, 4.0}));
+    points->unshift(points, ((Point){5.0, 6.0}));
     DequeInspect(points, "%f, %f");
 
-    points->push(points, ((Point){ 7.0, 8.0 }));
-    points->push(points, ((Point){ 9.0, 10.0 }));
-    points->push(points, ((Point){ 11.0, 12.0 }));
+    points->push(points, ((Point){7.0, 8.0}));
+    points->push(points, ((Point){9.0, 10.0}));
+    points->push(points, ((Point){11.0, 12.0}));
     DequeInspect(points, "%f, %f");
 
     Point point = points->shift(points);
