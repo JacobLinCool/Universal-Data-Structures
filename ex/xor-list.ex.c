@@ -1,7 +1,8 @@
 #include "../src/xor-list.h"
-#include <stdlib.h>
-#include <stdio.h>
+
 #include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /** Construct a new XOR list node struct */
 StructXORListNode(Node, int);
@@ -10,8 +11,7 @@ StructXORListNode(Node, int);
 void print_node(Node* node) {
     if (node) {
         printf("Node %p: \n\tval = %d\n\tbeacon = %p\n", node, node->val, node->beacon);
-    }
-    else {
+    } else {
         printf("No Node\n");
     }
 }
