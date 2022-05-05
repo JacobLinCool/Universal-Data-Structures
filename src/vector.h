@@ -101,7 +101,8 @@
         vector->data[idx2] = tmp;                                                                  \
     }                                                                                              \
     void sort_##_name(_name* vector, int (*compare)(const _type*, const _type*)) {                 \
-        qsort(vector->data, vector->size, sizeof(_type), compare);                                 \
+        qsort(vector->data, vector->size, sizeof(_type),                                           \
+              (int (*)(const void*, const void*))compare);                                         \
     }                                                                                              \
     void shuffle_##_name(_name* vector) {                                                          \
         for (size_t i = 0; i < vector->size; i++) {                                                \
