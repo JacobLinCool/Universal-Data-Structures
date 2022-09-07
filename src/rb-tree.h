@@ -134,5 +134,3 @@ void rb_tree_insert(RBTree* tree, RBNode* node) {
     node->color = RED;
     rb_tree_insert_fixup(tree, node);
 }
-
-uint64_t
