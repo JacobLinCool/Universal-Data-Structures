@@ -26,6 +26,7 @@
         void (*reverse)(struct _name * this);                                                      \
         void (*concat)(struct _name * this, struct _name* other);                                  \
         void (*clear)(struct _name * this);                                                        \
+        bool (*empty)(struct _name * this);                                                        \
         void (*free)(struct _name * this);                                                         \
     } _name;                                                                                       \
     void unshift_##_name(_name* this, _type elm) {                                                 \
@@ -128,6 +129,7 @@
             this->shift(this);                                                                     \
         }                                                                                          \
     }                                                                                              \
+    bool empty_##_name(_name* this) { return this->size == 0; }                                    \
     void free_##_name(_name* this) {                                                               \
         this->clear(this);                                                                         \
         free(this);                                                                                \
@@ -146,6 +148,7 @@
         this->reverse = reverse_##_name;                                                           \
         this->concat = concat_##_name;                                                             \
         this->clear = clear_##_name;                                                               \
+        this->empty = empty_##_name;                                                               \
         this->free = free_##_name;                                                                 \
         return this;                                                                               \
     }
