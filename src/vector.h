@@ -25,6 +25,7 @@
         _type (*shift)(struct _name * this);                                                       \
         _type (*front)(struct _name * this);                                                       \
         void (*clear)(struct _name * this);                                                        \
+        bool (*empty)(struct _name * this);                                                        \
         void (*free)(struct _name * this);                                                         \
         void (*resize)(struct _name * this, size_t size);                                          \
         /** Utilities */                                                                           \
@@ -81,6 +82,7 @@
     _type shift_##_name(_name* vector) { return remove_##_name(vector, 0); }                       \
     _type front_##_name(_name* vector) { return get_##_name(vector, 0); }                          \
     void  clear_##_name(_name* vector) { vector->size = 0; }                                       \
+    bool  emmpty_##_name(_name* vector) { return vector->size == 0; }                              \
     void  free_##_name(_name* vector) {                                                            \
          free(vector->data);                                                                       \
          free(vector);                                                                             \
@@ -173,6 +175,7 @@
         vector->shift = &shift_##_name;                                                            \
         vector->front = &front_##_name;                                                            \
         vector->clear = &clear_##_name;                                                            \
+        vector->empty = &empty_##_name;                                                            \
         vector->free = &free_##_name;                                                              \
         vector->resize = &resize_##_name;                                                          \
         vector->swap = &swap_##_name;                                                              \
