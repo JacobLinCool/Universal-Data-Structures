@@ -20,10 +20,12 @@
         _type (*get)(struct _name * this, size_t idx);                                             \
         void (*push)(struct _name * this, _type elm);                                              \
         _type (*pop)(struct _name * this);                                                         \
+        _type (*front)(struct _name * this);                                                       \
         _type (*back)(struct _name * this);                                                        \
+        *_type (*begin)(stucut _name this);                                                        \
+        *_type (*end)(struct _name this);                                                          \
         void (*unshift)(struct _name * this, _type elm);                                           \
         _type (*shift)(struct _name * this);                                                       \
-        _type (*front)(struct _name * this);                                                       \
         void (*clear)(struct _name * this);                                                        \
         bool (*empty)(struct _name * this);                                                        \
         void (*free)(struct _name * this);                                                         \
@@ -75,12 +77,14 @@
         }                                                                                          \
         return vector->data[_idx];                                                                 \
     }                                                                                              \
-    void  push_##_name(_name* vector, _type val) { insert_##_name(vector, vector->size, val); }    \
-    _type pop_##_name(_name* vector) { return remove_##_name(vector, vector->size - 1); }          \
-    _type back_##_name(_name* vector) { return get_##_name(vector, vector->size - 1); }            \
+    void   push_##_name(_name* vector, _type val) { insert_##_name(vector, vector->size, val); }   \
+    _type  pop_##_name(_name* vector) { return remove_##_name(vector, vector->size - 1); }         \
+    _type  front_##_name(_name* vector) { return get_##_name(vector, 0); }                         \
+    _type  back_##_name(_name* vector) { return get_##_name(vector, vector->size - 1); }           \
+    *_type begin_##_name(_name* vector) { return &(front_##_name(vector)); }                       \
+    *_type (*end)(struct _name this) { return &(back_##_name(vector)); }                           \
     void  unshift_##_name(_name* vector, _type val) { insert_##_name(vector, 0, val); }            \
     _type shift_##_name(_name* vector) { return remove_##_name(vector, 0); }                       \
-    _type front_##_name(_name* vector) { return get_##_name(vector, 0); }                          \
     void  clear_##_name(_name* vector) { vector->size = 0; }                                       \
     bool  emmpty_##_name(_name* vector) { return vector->size == 0; }                              \
     void  free_##_name(_name* vector) {                                                            \
